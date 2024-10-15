@@ -1,15 +1,15 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
-import Navbar from './Components/Navbar';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import Footer from './Components/Footer';
-import Contact from './Pages/Contact';
+import React, { useEffect, useState, Suspense, lazy } from "react";
+import Navbar from "./Components/Navbar";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import Footer from "./Components/Footer";
+import Contact from "./Pages/Contact";
 
 // Lazy load pages
-const Home = lazy(() => import('./Pages/Home'));
-const AboutUs = lazy(() => import('./Pages/AboutUs'));
-const Blog = lazy(() => import('./Pages/Blog'));
-const SingleBlog = lazy(() => import('./Pages/SingleBlog'));
-const ServiceDetail = lazy(() => import('./Pages/ServiceDetail'));
+const Home = lazy(() => import("./Pages/Home"));
+const AboutUs = lazy(() => import("./Pages/AboutUs"));
+const Blog = lazy(() => import("./Pages/Blog"));
+const SingleBlog = lazy(() => import("./Pages/SingleBlog"));
+const ServiceDetail = lazy(() => import("./Pages/ServiceDetail"));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -42,16 +42,14 @@ const App = () => {
         <BrowserRouter>
           <Navbar />
           <ScrollToTop /> {/* ScrollToTop component to handle scroll reset */}
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/blog/:id" element={<SingleBlog />} />
-              <Route path="/services/:serviceId" element={<ServiceDetail />} />
-            </Routes>
-          </Suspense>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog/:id" element={<SingleBlog />} />
+            <Route path="/services/:serviceId" element={<ServiceDetail />} />
+          </Routes>
           <Footer />
         </BrowserRouter>
       )}
